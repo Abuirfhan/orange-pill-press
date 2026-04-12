@@ -178,7 +178,7 @@ export default function ArticlePage() {
         <div
           className="article-content"
           style={{ padding: '2rem 3rem' }}
-          dangerouslySetInnerHTML={{ __html: article.content }}
+          dangerouslySetInnerHTML={{ __html: article.content ?? '' }}
         />
 
         <div style={{ margin: '0 3rem', borderTop: '1px solid var(--border)' }} />
