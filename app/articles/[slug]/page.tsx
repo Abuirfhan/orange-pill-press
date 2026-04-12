@@ -10,7 +10,7 @@ interface Article {
   id: number
   title: string
   slug: string
-  content: string
+  content?: string
   excerpt: string
   category: string
   read_time_mins: number
