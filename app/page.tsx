@@ -13,6 +13,7 @@ interface Article {
   category: string
   read_time_mins: number
   published_at: string
+  featured_image: string | null;
 }
 
 interface BitcoinStats {
@@ -72,7 +73,7 @@ export default function Home() {
     const fetchAll = async () => {
       const { data: arts } = await supabase
         .from('articles')
-        .select('id, title, slug, excerpt, category, read_time_mins, published_at')
+        .select('id, title, slug, excerpt, category, read_time_mins, published_at, featured_image') 
         .order('published_at', { ascending: false })
 
       const { data: btc } = await supabase
