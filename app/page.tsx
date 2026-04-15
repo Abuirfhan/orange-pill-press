@@ -13,7 +13,7 @@ interface Article {
   category: string
   read_time_mins: number
   published_at: string
-  featured_image: string | null;
+  featured_image: string | null // FIX 1: Add this to the interface
 }
 
 interface BitcoinStats {
@@ -71,9 +71,10 @@ export default function Home() {
 
   useEffect(() => {
     const fetchAll = async () => {
+      // FIX 2: Added featured_image to the selection string
       const { data: arts } = await supabase
         .from('articles')
-        .select('id, title, slug, excerpt, category, read_time_mins, published_at, featured_image') 
+        .select('id, title, slug, excerpt, category, read_time_mins, published_at, featured_image')
         .order('published_at', { ascending: false })
 
       const { data: btc } = await supabase
@@ -301,13 +302,21 @@ export default function Home() {
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--gold)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
             >
+              {/* FIX 3: Rendering the image background for Featured */}
               <div style={{
-                background: 'var(--bg3)', minHeight: '300px',
+                background: featured.featured_image ? `url(${featured.featured_image})` : 'var(--bg3)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                minHeight: '300px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 position: 'relative', overflow: 'hidden',
               }}>
-                <span style={{ fontSize: '8rem', opacity: 0.08, fontFamily: "'Playfair Display', serif", fontWeight: 900, color: 'var(--gold)', transform: 'rotate(-15deg)' }}>B</span>
-                <span style={{ fontSize: '4rem', position: 'relative', zIndex: 1 }}>₿</span>
+                {!featured.featured_image && (
+                  <>
+                    <span style={{ fontSize: '8rem', opacity: 0.08, fontFamily: "'Playfair Display', serif", fontWeight: 900, color: 'var(--gold)', transform: 'rotate(-15deg)' }}>B</span>
+                    <span style={{ fontSize: '4rem', position: 'relative', zIndex: 1 }}>₿</span>
+                  </>
+                )}
               </div>
               <div style={{ padding: '2.5rem', background: 'var(--bg2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
@@ -342,8 +351,17 @@ export default function Home() {
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; }}
               >
-                <div style={{ height: '140px', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', position: 'relative', overflow: 'hidden' }}>
-                  <span style={{ position: 'absolute', fontSize: '5rem', opacity: 0.06, fontFamily: "'Playfair Display', serif", fontWeight: 900, color: 'var(--gold)' }}>₿</span>
+                {/* FIX 4: Rendering the image background for Grid Items */}
+                <div style={{ 
+                    height: '140px', 
+                    background: article.featured_image ? `url(${article.featured_image})` : 'var(--bg3)', 
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', position: 'relative', overflow: 'hidden' 
+                }}>
+                  {!article.featured_image && (
+                    <span style={{ position: 'absolute', fontSize: '5rem', opacity: 0.06, fontFamily: "'Playfair Display', serif", fontWeight: 900, color: 'var(--gold)' }}>₿</span>
+                  )}
                 </div>
                 <div style={{ padding: '1.5rem' }}>
                   <div style={{ marginBottom: '0.75rem' }}><Tag cat={article.category} /></div>
