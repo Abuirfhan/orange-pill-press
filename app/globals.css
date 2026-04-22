@@ -33,82 +33,13 @@ body::before {
   opacity: 0.4;
 }
 
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4 {
-  font-family: 'Playfair Display', serif;
-  color: var(--white);
-  font-weight: 700;
-  margin: 2rem 0 1rem;
-  line-height: 1.3;
-}
-
-.article-content h2 {
-  font-size: 1.6rem;
-  border-left: 3px solid var(--gold);
-  padding-left: 1rem;
-  margin: 2.5rem 0 1rem;
-}
-
-.article-content h3 { font-size: 1.3rem; }
-
-.article-content p {
-  margin-bottom: 1.5rem;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.9;
-  font-weight: 300;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.article-content a { color: var(--gold); text-decoration: underline; }
-
-.article-content ul,
-.article-content ol {
-  margin: 1rem 0 1.5rem 2rem;
-  color: var(--muted);
-}
-
-.article-content li {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  line-height: 1.8;
-  font-weight: 300;
-}
-
-.article-content blockquote {
-  border-left: 3px solid var(--gold);
-  padding: 1rem 1.5rem;
-  margin: 2rem 0;
-  background: var(--bg2);
-  font-style: italic;
-  color: var(--muted);
-}
-
-.article-content strong { color: var(--white); font-weight: 700; }
-
-.article-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin: 2rem 0;
-  border: 1px solid var(--border);
-}
-
-.article-content hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2rem 0;
-}
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .fade-up { animation: fadeUp 0.6s ease forwards; }
-/* WordPress content cleanup */
+
+/* ── Article Content ── */
 .article-content p {
   margin-bottom: 1.5rem;
   color: var(--muted);
@@ -118,24 +49,26 @@ body::before {
   font-family: 'DM Sans', sans-serif;
 }
 
-.article-content h2 {
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
   color: var(--white);
-  border-left: 3px solid var(--gold);
-  padding-left: 1rem;
+  font-weight: 700;
   margin: 2.5rem 0 1rem;
   line-height: 1.3;
 }
 
-.article-content h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--white);
-  margin: 2rem 0 0.75rem;
+.article-content h2 {
+  font-size: 1.5rem;
+  border-left: 3px solid var(--gold);
+  padding-left: 1rem;
 }
+
+.article-content h3 { font-size: 1.2rem; }
+
+.article-content a { color: var(--gold); text-decoration: underline; }
 
 .article-content ul,
 .article-content ol {
@@ -161,15 +94,7 @@ body::before {
   border-radius: 0 4px 4px 0;
 }
 
-.article-content strong {
-  color: var(--white);
-  font-weight: 600;
-}
-
-.article-content a {
-  color: var(--gold);
-  text-decoration: underline;
-}
+.article-content strong { color: var(--white); font-weight: 600; }
 
 .article-content img {
   width: 100%;
@@ -185,10 +110,7 @@ body::before {
   margin: 2rem 0;
 }
 
-/* Remove WordPress figure margins */
-.article-content figure {
-  margin: 2rem 0;
-}
+.article-content figure { margin: 2rem 0; }
 
 .article-content figcaption {
   font-family: 'IBM Plex Mono', monospace;
@@ -198,79 +120,125 @@ body::before {
   margin-top: 0.5rem;
 }
 
-/* ================= ARTICLE PAGE MATCH (THE SATOSHI STYLE) ================= */
+/* ── Mobile ── */
 @media (max-width: 768px) {
 
-  /* 1. Clear the Header clutter */
-  .article-header-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
+  /* Nav */
+  nav {
+    padding: 1rem 1.5rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
   }
 
-  /* 2. Hero Image Scaling */
-  .article-hero-image {
-    width: 100vw !important;
-    margin-left: -1.5rem !important; /* Forces it to touch phone edges */
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border: none !important;
+  nav ul {
+    display: none !important;
   }
 
-  /* 3. Title & Meta (The Satoshi spacing) */
-  .article-title-container {
-    padding: 2rem 0 1rem 0;
+  /* Hero */
+  section.fade-up {
+    grid-template-columns: 1fr !important;
+    padding: 2.5rem 1.5rem !important;
+    gap: 2rem !important;
   }
 
-  .article-title-container h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem !important;
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--white);
-    margin-bottom: 1rem;
+  /* Hero h1 */
+  section.fade-up h1 {
+    font-size: 2.5rem !important;
   }
 
-  .article-meta-info {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  /* Bitcoin ticker */
+  section.fade-up > div:last-child {
+    display: none !important;
   }
 
-  /* 4. The Reading Experience (Paragraphs) */
+  /* Stats grid */
+  #stats .grid,
+  #stats > div > div {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Articles grid */
+  #posts > div:last-of-type {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Featured post */
+  a > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Article page */
+  main[style*="max-width: 900px"] {
+    padding: 0 !important;
+  }
+
+  main[style*="max-width: 900px"] > div:first-child {
+    padding: 1rem 1.5rem !important;
+  }
+
+  /* Featured image height on mobile */
+  main[style*="max-width: 900px"] > div[style*="min-height: 400px"] {
+    min-height: 260px !important;
+    padding: 1.5rem !important;
+  }
+
+  /* Article title on mobile */
+  main[style*="max-width: 900px"] h1 {
+    font-size: 1.6rem !important;
+  }
+
+  /* Article excerpt + content padding */
   .article-content {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 1rem 0; /* Remove extra side padding here */
+    padding: 1.5rem !important;
   }
 
+  main[style*="max-width: 900px"] > div[style*="padding: 2rem 3rem 0"] {
+    padding: 1.5rem 1.5rem 0 !important;
+  }
+
+  /* Lightning tip box */
+  main[style*="max-width: 900px"] > div[style*="margin: 3rem"] {
+    margin: 1.5rem !important;
+  }
+
+  /* Related articles */
+  main[style*="max-width: 900px"] > div[style*="padding: 0 3rem 4rem"] {
+    padding: 0 1.5rem 3rem !important;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    text-align: center !important;
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Article content text size on mobile */
   .article-content p {
-    font-size: 1.15rem !important; /* Match 'The Satoshi' size */
-    line-height: 1.8;
-    color: #b0b0b0; /* Slightly brighter than pure muted for better contrast */
-    margin-bottom: 1.8rem;
-    font-weight: 400;
+    font-size: 1rem !important;
+    line-height: 1.85 !important;
   }
 
-  /* 5. Subheaders (H2, H3) */
   .article-content h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    margin-top: 3rem;
-    color: var(--white);
-    border-left: none !important; /* Removing the gold line to match your screenshot */
+    font-size: 1.3rem !important;
   }
 
-  /* 6. Fix for those floating 'Buy me a coffee' buttons */
-  .coffee-button-mobile {
-    width: 100%;
-    text-align: center;
-    margin: 1rem 0;
+  /* Newsletter */
+  #newsletter {
+    padding: 3rem 1.5rem !important;
+  }
+
+  #newsletter form {
+    flex-direction: column !important;
+  }
+
+  #newsletter input {
+    border-right: 1px solid var(--border) !important;
+    border-radius: 2px !important;
+  }
+
+  #newsletter button {
+    border-radius: 2px !important;
   }
 }
