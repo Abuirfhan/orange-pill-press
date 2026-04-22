@@ -197,3 +197,59 @@ body::before {
   text-align: center;
   margin-top: 0.5rem;
 }
+
+/* ================= MOBILE (<=768px) ================= */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .article-content {
+    padding: 0 1.2rem;
+  }
+
+  .article-content h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .article-content h2 {
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .article-content p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-left: 1.2rem;
+  }
+
+  .article-content li {
+    font-size: 0.95rem;
+  }
+
+  .article-content blockquote {
+    padding: 0.8rem 1rem;
+  }
+
+  .article-content img {
+    margin: 1.5rem 0;
+  }
+
+  .article-content figure {
+    margin: 1.5rem 0;
+  }
+
+  .article-content figcaption {
+    font-size: 0.65rem;
+  }
+}
