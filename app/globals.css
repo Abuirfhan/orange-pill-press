@@ -198,138 +198,79 @@ body::before {
   margin-top: 0.5rem;
 }
 
-/* ================= COMPLETE MOBILE OPTIMIZATION (<=768px) ================= */
+/* ================= ARTICLE PAGE MATCH (THE SATOSHI STYLE) ================= */
 @media (max-width: 768px) {
-  
-  /* 1. Global Layout Adjustments */
-  body {
-    overflow-x: hidden; /* Prevents side-scrolling wobble */
-  }
 
-  main {
-    padding: 1rem 1.2rem; /* Consistent side breathing room */
-  }
-
-  /* 2. Main Page / Homepage Grid */
-  /* If you are using a grid for your article cards, stack them vertically */
-  .article-grid {
+  /* 1. Clear the Header clutter */
+  .article-header-nav {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-  }
-
-  .article-card {
+    align-items: center;
+    gap: 10px;
+    padding: 1.5rem 0;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 1.5rem;
   }
 
-  .article-card img {
-    height: 200px; /* Fixed height for consistency on mobile */
+  /* 2. Hero Image Scaling */
+  .article-hero-image {
+    width: 100vw !important;
+    margin-left: -1.5rem !important; /* Forces it to touch phone edges */
+    height: auto;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    border: none !important;
+  }
+
+  /* 3. Title & Meta (The Satoshi spacing) */
+  .article-title-container {
+    padding: 2rem 0 1rem 0;
+  }
+
+  .article-title-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem !important;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--white);
     margin-bottom: 1rem;
   }
 
-  .article-card h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* 3. Article Detail Page (from-fiat-to-bitcoin-rethinking-property-rights) */
-  .article-header {
-    margin-bottom: 2rem;
-    text-align: left;
-  }
-
-  .article-header h1 {
-    font-size: 2rem; /* Large enough to be bold, small enough to not break words */
-    line-height: 1.2;
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-  }
-
-  .article-meta {
+  .article-meta-info {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--muted);
-    margin-top: 1rem;
-    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
-  /* 4. Deep Content Styling (The Reading Experience) */
+  /* 4. The Reading Experience (Paragraphs) */
   .article-content {
-    padding: 0; /* Let the main container handle padding */
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0; /* Remove extra side padding here */
   }
 
   .article-content p {
-    font-size: 1.05rem; /* Slightly larger for easier mobile reading */
+    font-size: 1.15rem !important; /* Match 'The Satoshi' size */
     line-height: 1.8;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.011em; /* Optimized for DM Sans */
+    color: #b0b0b0; /* Slightly brighter than pure muted for better contrast */
+    margin-bottom: 1.8rem;
+    font-weight: 400;
   }
 
+  /* 5. Subheaders (H2, H3) */
   .article-content h2 {
-    font-size: 1.4rem;
-    margin: 2.5rem 0 1.2rem;
-    padding-left: 0.8rem;
-    border-left-width: 4px; /* Stronger accent for the Gold line */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    color: var(--white);
+    border-left: none !important; /* Removing the gold line to match your screenshot */
   }
 
-  .article-content h3 {
-    font-size: 1.2rem;
-    margin-top: 2rem;
-  }
-
-  /* 5. Blockquotes - Make them stand out but fit the screen */
-  .article-content blockquote {
-    margin: 2rem 0;
-    padding: 1.2rem;
-    background: var(--bg2);
-    border-radius: 4px;
-  }
-
-  .article-content blockquote p {
-    font-size: 1rem;
-    margin-bottom: 0;
-    font-style: italic;
-  }
-
-  /* 6. Lists - Fix the indent so bullets don't go off-screen */
-  .article-content ul,
-  .article-content ol {
-    margin-left: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .article-content li {
-    font-size: 1rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.6;
-  }
-
-  /* 7. Images & Figures */
-  .article-content img {
-    margin: 1.5rem -1.2rem; /* "Full Bleed" effect: image touches edges of screen */
-    width: calc(100% + 2.4rem); 
-    max-width: none;
-    border-radius: 0; /* Flat edges look better on full-bleed mobile images */
-    border-left: none;
-    border-right: none;
-  }
-
-  .article-content figcaption {
-    font-size: 0.7rem;
-    padding: 0 1.2rem;
-  }
-
-  /* 8. Footer & Navigation */
-  nav {
-    padding: 1rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 1rem;
+  /* 6. Fix for those floating 'Buy me a coffee' buttons */
+  .coffee-button-mobile {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
   }
 }
