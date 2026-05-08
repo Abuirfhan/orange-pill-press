@@ -67,7 +67,8 @@ export default function ArticleEditor({
     letterSpacing: '0.1em', textTransform: 'uppercase' as const,
     display: 'block', marginBottom: '0.5rem',
   }
-
+  const [newCategory, setNewCategory] = useState('')
+  const [customCategories, setCustomCategories] = useState<string[]>([])
   const actionLabel = mode === 'create' ? 'Publish Article' : 'Save Changes'
   const savingLabel = mode === 'create' ? 'Publishing...' : 'Saving...'
   const savedLabel = mode === 'create' ? 'Published! Redirecting...' : 'Saved! Redirecting...'
@@ -148,13 +149,58 @@ export default function ArticleEditor({
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <div>
             <label style={labelStyle}>Category</label>
-            <select
-              value={category}
-              onChange={e => setCategory(e.target.value)}
-              style={{ ...inputStyle, height: '44px' }}
-            >
-              {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+            <div>
+  <label style={labelStyle}>Category</label>
+  <div style={{ display: 'flex', gap: '0.5rem' }}>
+    <select
+      value={category}
+      onChange={e => setCategory(e.target.value)}
+      style={{ ...inputStyle, height: '44px', flex: 1 }}
+    >
+      {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+      {customCategories.map(c => <option key={c} value={c}>{c}</option>)}
+    </select>
+    <input
+      type="text"
+      value={newCategory}
+      onChange={e => setNewCategory(e.target.value)}
+      placeholder="New category..."
+      onKeyDown={e => {
+        if (e.key === 'Enter' && newCategory.trim()) {
+          setCustomCategories([...customCategories, newCategory.trim()])
+          setCategory(newCategory.trim())
+          setNewCategory('')
+        }
+      }}
+      style={{
+        ...inputStyle,
+        height: '44px',
+        width: '180px',
+        flex: 'none',
+      }}
+    />
+    <button
+      type="button"
+      onClick={() => {
+        if (newCategory.trim()) {
+          setCustomCategories([...customCategories, newCategory.trim()])
+          setCategory(newCategory.trim())
+          setNewCategory('')
+        }
+      }}
+      style={{
+        background: 'var(--gold)', border: 'none', borderRadius: '2px',
+        color: '#000', fontFamily: "'IBM Plex Mono', monospace",
+        fontSize: '0.8rem', fontWeight: 600,
+        padding: '0 1rem', height: '44px', cursor: 'pointer',
+        whiteSpace: 'nowrap',
+      }}
+    >+ Add</button>
+  </div>
+  <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', color: 'var(--muted)', marginTop: '0.4rem' }}>
+    Type a new category and press Enter or click + Add
+  </p>
+</div>
           </div>
           <div>
             <label style={labelStyle}>Read Time (mins) — auto</label>
